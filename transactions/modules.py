@@ -68,7 +68,7 @@ class Transaction:
         :param data: номер счета или номер карты
         :return: номер счета или номер карты с маской
         """
-        if data == "Ошибка в данных!":
+        if data == None:
             return data
         if data[:4] == "Счет":
             return f"{data[:4]} {self.masking_account_number(data)}"
@@ -76,8 +76,12 @@ class Transaction:
 
 
     def make_report(self, date, description, fromho, toho, amount, currency):
+        report = ""
         """
         Формирует и возвращает запись о транзакции в нужном формате
+        с учетом возможного отсутствия:
+        - номера счета (карты) отправителя при открытии нового счета
+        - номера счета (карты) получателя при закрытии счета
         :param date: дата операции
         :param description: описание операции
         :param fromho: отправитель
@@ -86,9 +90,15 @@ class Transaction:
         :param currency: валюта операции
         :return: запись о транзакции в нужном формате
         """
-        return f'{date} {description}\n' \
-               f'{fromho} -> {toho}\n' \
-               f'{amount} {currency}'
+        report += f'{date} {description}\n'
+        if fromho == None:
+            report += toho
+        elif toho == None:
+            report += fromho
+        else:
+            report += f'{fromho} -> {toho}'
+        report += '\n' + f'{amount} {currency}'
+        return report
 
 
     def __repr__(self):

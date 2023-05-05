@@ -14,7 +14,7 @@ def data_convert(data):
     """
     Получает из списка словарей новый список словарей,
     отфильтрованный по state="EXECUTED" и отсортированный
-    по значению date в обратном порядке
+    в обратном порядке по значению date
     """
     data_no_empty_executed = [item for item in data if item != {} and item["state"] == "EXECUTED"]
     data_sorted = sorted(data_no_empty_executed, key=itemgetter("date"), reverse=True)
