@@ -4,10 +4,14 @@ from operator import itemgetter
 
 def load_transactions(path):
     """Загружает данные из файла json"""
-    with open(path) as file:
-        content = file.read()
-        data = json.loads(content)
-        return data
+    try:
+        with open(path) as file:
+            content = file.read()
+            data = json.loads(content)
+            return data
+    except Exception:
+        print('Файл не найден')
+        exit()
 
 
 def data_convert(data):
