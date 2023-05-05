@@ -1,8 +1,8 @@
 import utils
 import modules
 
-JSON_PATH = "data/operations.json"
-TRANSACTIONS_NUMBER = 50
+JSON_PATH = "/home/airat/PycharmProjects/transactions/transactions/data/operations.json"
+TRANSACTIONS_NUMBER = 5
 
 def main():
     data = utils.load_transactions(JSON_PATH)
@@ -12,27 +12,27 @@ def main():
         try:
             date = processed_data[i]["date"]
         except:
-            date = None
+            date = "Данные не получены"
         try:
             description = processed_data[i]["description"]
         except:
-            description = None
+            description = "Ошибка в данных"
         try:
             fromho = processed_data[i]["from"]
         except:
-            fromho = None
+            fromho = "Ошибка в данных!"
         try:
             toho = processed_data[i]["to"]
         except:
-            toho = None
+            toho = "Ошибка в данных!"
         try:
             amount = processed_data[i]["operationAmount"]["amount"]
         except:
-            amount = None
+            amount = "Ошибка в данных!"
         try:
             currency = processed_data[i]["operationAmount"]["currency"]["name"]
         except:
-            currency = None
+            currency = "Ошибка в данных!"
 
         transaction_object = modules.Transaction(date, description, fromho, toho, amount, currency)
         report = transaction_object.make_report(
@@ -45,6 +45,7 @@ def main():
         )
 
         print(f"{report}\n")
+
 
 if __name__ == "__main__":
     main()

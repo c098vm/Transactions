@@ -46,8 +46,6 @@ class Transaction:
         :param data: полный номер карты
         :return: номер карты с маской
         """
-        if data == None:
-            return None
         card_number = data[-16:-12] + " " + data[-12:-10] + "** **** " + data[-4:]
         return card_number
 
@@ -58,8 +56,6 @@ class Transaction:
         :param data: полный номер счета
         :return: номер счета с маской
         """
-        if data == None:
-            return None
         account_number = "**" + data[-4:]
         return account_number
 
@@ -72,8 +68,8 @@ class Transaction:
         :param data: номер счета или номер карты
         :return: номер счета или номер карты с маской
         """
-        if data == None:
-            return None
+        if data == "Ошибка в данных!":
+            return data
         if data[:4] == "Счет":
             return f"{data[:4]} {self.masking_account_number(data)}"
         return f"{data[:-17]} {self.masking_card_number(data)}"
