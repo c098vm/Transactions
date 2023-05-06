@@ -2,7 +2,7 @@ import utils
 import modules
 
 # Путь к json-файлу
-JSON_PATH = "/home/airat/PycharmProjects/transactions/transactions/data/operations.json"
+JSON_PATH = "../transactions/data/operations.json"
 
 # Количество выводимых транзакций (по умолчанию - 5, но можно изменить)
 TRANSACTIONS_NUMBER = 5
