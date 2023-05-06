@@ -1,5 +1,4 @@
 import utils
-import modules
 
 # Путь к json-файлу
 JSON_PATH = "../transactions/data/operations.json"
@@ -38,22 +37,14 @@ def main():
         except:
             toho = None
 
-
-        transaction_object = modules.Transaction(
-            date,
+    
+        report = utils.make_report(
+            utils.get_date(date),
             description,
-            fromho,
-            toho,
+            utils.card_account_choice(fromho),
+            utils.card_account_choice(toho),
             amount,
             currency
-        )
-        report = transaction_object.make_report(
-            transaction_object.get_date(date),
-            transaction_object.description,
-            transaction_object.card_account_choice(fromho),
-            transaction_object.card_account_choice(toho),
-            transaction_object.amount,
-            transaction_object.currency
         )
 
         print(f"{report}\n")
