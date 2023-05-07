@@ -1,7 +1,7 @@
-import utils
+from transactions import utils
 
 # Путь к json-файлу
-JSON_PATH = "../transactions/data/operations.json"
+JSON_PATH = "data/operations.json"
 
 # Количество выводимых транзакций (по умолчанию - 5, но можно изменить)
 TRANSACTIONS_NUMBER = 5
