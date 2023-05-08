@@ -10,8 +10,7 @@ def load_transactions(path):
             data = json.loads(content)
             return data
     except Exception:
-        print('Файл не найден')
-        exit()
+        return []
 
 
 def data_convert(data):
@@ -69,7 +68,7 @@ def card_account_choice(data):
     :return: номер счета или номер карты с маской
     """
     if data == None:
-        return data
+        return None
     if data[:4] == "Счет":
         return f"{data[:4]} {masking_account_number(data)}"
     return f"{data[:-17]} {masking_card_number(data)}"

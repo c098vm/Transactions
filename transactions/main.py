@@ -16,6 +16,9 @@ def main():
     и записываем в переменную processed_data
     """
     data = utils.load_transactions(JSON_PATH)
+    if data == []:
+        print('Ошибка чтения данных')
+        exit()
     processed_data = utils.data_convert(data)
 
     # Зацикливаемся на количество выводимых транзакций
